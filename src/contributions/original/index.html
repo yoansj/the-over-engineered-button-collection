@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <body>
+    <button>Click me</button>
+    <p>You clicked: 0 times</p>
+  </body>
+</html>
+
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+  }
+</style>
+
+<script>
+  let times = 0;
+
+  const text = document.querySelector('p')
+
+  document.querySelector('button')
+    .addEventListener('click', () => {
+      times += 1
+
+      if (text) {
+        text.textContent = `You clicked: ${times} times`
+      }
+    })
+</script>

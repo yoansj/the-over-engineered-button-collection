@@ -1,11 +1,87 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import { fetchAllButtons } from '@/utils/fetchAllButtons'
+import Preview from '@/components/Preview.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const allBlogPosts = await fetchAllButtons()
 ---
 
 <Layout>
-	<Welcome />
+	<main class="home">
+		<aside class="home__sidemenu">
+			SEARCH
+		</aside>
+
+		<div class="home__buttons">
+			{allBlogPosts.map((data) => <Preview buttonData={data} />
+
+				// <div class="card">
+				// 	<h3>{data.data.name}</h3>
+				// 	<iframe srcdoc={data.html} sandbox="allow-scripts"></iframe>
+				// 	<p>By {data.data.author}</p>
+				// </div>
+			)}
+		</div>
+	</main>
 </Layout>
+
+<style>
+	.home {
+		display: flex;
+		width: 100vw;
+		position: relative;
+	}
+
+	.home__sidemenu {
+		flex: 0.3;
+		background-color: var(--color_sidemenu);
+		height: 100vh;
+		position: sticky;
+		border-right: 3px solid;
+	}
+
+	.home__buttons {
+		flex: 1;
+		background-color: white;
+		/* position: relative;
+		background-image: 
+			linear-gradient(to right, #e7e5e4 1px, transparent 1px),
+			linear-gradient(to bottom, #e7e5e4 1px, transparent 1px);
+		background-size: 20px 20px;
+		background-position: 0 0, 0 0;
+		mask-image: 
+			repeating-linear-gradient(
+				to right,
+				black 0px,
+				black 3px,
+				transparent 3px,
+				transparent 8px
+			),
+			repeating-linear-gradient(
+				to bottom,
+				black 0px,
+				black 3px,
+				transparent 3px,
+				transparent 8px
+			),
+			radial-gradient(ellipse 100% 80% at 50% 100%, #000 50%, transparent 90%);
+		-webkit-mask-image: 
+			repeating-linear-gradient(
+				to right,
+				black 0px,
+				black 3px,
+				transparent 3px,
+				transparent 8px
+			),
+			repeating-linear-gradient(
+				to bottom,
+				black 0px,
+				black 3px,
+				transparent 3px,
+				transparent 8px
+			),
+			radial-gradient(ellipse 100% 80% at 50% 100%, #000 50%, transparent 90%);
+		mask-composite: intersect;
+		-webkit-mask-composite: source-in; */
+	}
+</style>

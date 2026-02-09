@@ -1,3 +1,8 @@
+---
+import { theme, themeToFlatObject } from '@/assets/theme';
+import '@fontsource/instrument-serif';
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -6,18 +11,81 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>THE OVER ENGINEERED BUTTON COLLECTION</title>
 	</head>
 	<body>
+		<header>
+			<h1>THE OVER ENGINEERED BUTTON COLLECTION</h1>
+		</header>
 		<slot />
 	</body>
 </html>
 
-<style>
+<style define:vars={{ ...themeToFlatObject(theme) }}>
 	html,
 	body {
 		margin: 0;
 		width: 100%;
 		height: 100%;
 	}
+
+	/*
+		Josh's Custom CSS Reset
+		https://www.joshwcomeau.com/css/custom-css-reset/
+	*/
+
+	*, *::before, *::after {
+		box-sizing: border-box;
+	}
+
+	*:not(dialog) {
+		margin: 0;
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		html {
+			interpolate-size: allow-keywords;
+		}
+	}
+
+	body {
+		line-height: 1.5;
+		-webkit-font-smoothing: antialiased;
+	}
+
+	img, picture, video, canvas, svg {
+		display: block;
+		max-width: 100%;
+	}
+
+	input, button, textarea, select {
+		font: inherit;
+	}
+
+	p, h1, h2, h3, h4, h5, h6 {
+		overflow-wrap: break-word;
+	}
+
+	p {
+		text-wrap: pretty;
+	}
+	h1, h2, h3, h4, h5, h6 {
+		text-wrap: balance;
+		font-family: 'Instrument Serif', serif;
+	}
+
+	#root, #__next {
+		isolation: isolate;
+	}
+
+	header {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: #FFEA00;
+		padding: 8px;
+		font-size: 170%;
+		border-bottom: 3px solid;
+	}
 </style>
+

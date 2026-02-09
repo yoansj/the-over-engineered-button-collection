@@ -1,0 +1,39 @@
+---
+import type { ButtonWithHtml } from '@/utils/fetchAllButtons'
+
+interface Props {
+  buttonData: ButtonWithHtml
+}
+
+const { buttonData } = Astro.props
+
+console.log('ahahahjkhkah')
+
+let githubData = null
+
+try {
+  console.log('here')
+  const response = await fetch(`https://api.github.com/user/${buttonData.data.name}`)
+  githubData = await response.json()
+} catch (error) {
+  console.error("Erreur :", error);
+}
+
+console.log(githubData)
+
+---
+
+<div class="preview">
+  <div class="preview__header">
+    <p>{ buttonData.data.name }</p>
+  </div>
+
+  <div class="preview__body">
+    <iframe srcdoc={buttonData.html} sandbox="allow-scripts">
+    </iframe>
+  </div>
+
+  <div>
+    <img />
+  </div>
+</div>
